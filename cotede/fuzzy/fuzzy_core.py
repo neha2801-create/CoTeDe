@@ -25,7 +25,7 @@ def fuzzyfy(data, features, output, require="all"):
     """
     features_list = list(features.keys())
 
-    N = max([len(data[f]) for f in features_list])
+    N = max(len(data[f]) for f in features_list)
 
     # The fuzzy set are usually: low, medium, high
     # The membership of each fuzzy set are each feature scaled.
