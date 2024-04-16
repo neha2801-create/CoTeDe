@@ -279,7 +279,7 @@ def split_data_groups(flag):
     return {'fit': ind_fit, 'test': ind_test, 'err': ind_err}
 
 
-def i2b_flags(flags, good_flags=[1,2], bad_flags=[3,4]):
+def i2b_flags(flags, good_flags=None, bad_flags=None):
     """ Converts int flags (like IOC) into binary (T|F)
 
         If given a dictionary of flags, it will evaluate each item
@@ -288,6 +288,8 @@ def i2b_flags(flags, good_flags=[1,2], bad_flags=[3,4]):
           - False if any of the available values is False
           - Masked is all values are masked
     """
+    good_flags = [1,2] if good_flags is None else good_flags
+    bad_flags = [3,4] if bad_flags is None else bad_flags
 
     if (hasattr(flags, 'keys')) and (np.ndim(flags) > 1):
         output= []
