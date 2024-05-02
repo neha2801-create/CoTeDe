@@ -104,7 +104,7 @@ def load_cfg(cfgname="cotede"):
 
     # A given manual configuration has priority
     if isinstance(cfgname, dict):
-        module_logger.debug("User's QC cfg: %s" % cfgname)
+        module_logger.debug("User's QC cfg: %s", cfgname)
         cfg = OrderedDict(copy.deepcopy(cfgname))
     elif isinstance(cfgname, str):
         try:
@@ -113,13 +113,13 @@ def load_cfg(cfgname="cotede"):
                 "cotede", os.path.join("qc_cfg", "{}.json".format(cfgname))
             )
             cfg = json.loads(p, object_pairs_hook=OrderedDict)
-            module_logger.debug("Builtin config - %s" % cfgname)
+            module_logger.debug("Builtin config - %s", cfgname)
         except:
             # Otherwise, try to load from user's directory
             p = os.path.join(cotederc("cfg"), "{}.json".format(cfgname))
             with open(p, "r") as f:
                 cfg = json.load(f, object_pairs_hook=OrderedDict)
-            module_logger.debug("User collection cfg - %s" % cfgname)
+            module_logger.debug("User collection cfg - %s", cfgname)
 
     cfg = fix_config(cfg)
     if "inherit" in cfg:

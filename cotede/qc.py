@@ -91,8 +91,7 @@ class ProfileQC(object):
                 vv = v
             for c in self.cfg['variables']:
                 if re.match("(%s)2?$" % c, vv):
-                    module_logger.debug(" %s - evaluating: %s, as type: %s" %
-                                            (self.name, v, c))
+                    module_logger.debug(" %s - evaluating: %s, as type: %s", self.name, v, c)
                     self.evaluate(v, self.cfg['variables'][c])
                     break
 
@@ -303,7 +302,7 @@ class ProfileQC(object):
                                 np.abs(y.features['cars_normbias'])
                     else:
                         module_logger.error(
-                                "Sorry, I can't evaluate anomaly_detection with: %s" % f)
+                                "Sorry, I can't evaluate anomaly_detection with: %s", f)
 
             prob, self.flags[v]['anomaly_detection'] = \
                     qctests.anomaly_detection(features, cfg['anomaly_detection'])
