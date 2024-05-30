@@ -20,6 +20,7 @@ from .core import QCCheckVar
 from .gradient import gradient
 from .spike import spike
 from .woa_normbias import woa_normbias
+import math
 
 module_logger = logging.getLogger(__name__)
 
@@ -93,6 +94,6 @@ class Morello2014(QCCheckVar):
         # Missing check if threshold was crossed, to flag as 4
         # The thresholds coincide with the end of the ramp for the fuzzy set
         #   high, hence we can simply
-        flag[(f["high"] == 1.0)] = 4
+        flag[math.isclose(f["high"], 1.0, rel_tol=1e-09, abs_tol=0.0)] = 4
 
         self.flags["morello2014"] = flag
